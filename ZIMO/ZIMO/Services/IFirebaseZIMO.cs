@@ -8,7 +8,7 @@ namespace ZIMO.Services
     public interface IFirebaseZIMO
     {
         Task<string> LoginWithEmailPassword(string email, string password);
-      //  Task<string> DoRegisterWithEP(string E, string P);
+         Task<string> DoRegisterWithEP(string E, string P);
 
     }
 }
