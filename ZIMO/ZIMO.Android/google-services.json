@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "406321769307",
+    "project_id": "zimo-d68df",
+    "storage_bucket": "zimo-d68df.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406321769307:android:68dcfaaf743d783e12487e",
+        "android_client_info": {
+          "package_name": "com.companyname.zimo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406321769307-ck1f4chce0m641u8gl2vaeslt4tfq3gl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD65SPrS7iY8Cyk3JPlIMzb6mB3YC9mtSo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406321769307-ck1f4chce0m641u8gl2vaeslt4tfq3gl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
