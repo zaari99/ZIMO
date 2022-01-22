@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "LIVREURS";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table" style="width:100%" id="MyTableResults">
+    <thead>
+        <tr>
+            <td>Nom</td>
+            <td>Prenom</td>
+            <td>Ville</td>
+            <td>Laltitude</td>
+            <td>Longitude</td>
+            <td>Dispo</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+
+</table>
+
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $('#MyTableResults').DataTable({
+
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ lignes par page",
+                    "zeroRecords": "Aucun élément",
+                    "info": "Page _PAGE_/_PAGES_",
+                    "infoEmpty": "Aucun élément",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "previous": "Précédent",
+                        "next": 'Suivant'
+                    }
+                },
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "bFilter": true,
+                "ajax": {
+                    dataType: "JSON",
+                    type: "GET",
+                    url: '@Url.Action("GetLivreurs")',
+                    "dataSrc": function (res) {
+                        if (res.success == true) {
+                            return res.data;
+                        }
+                        else {
+                            alert("Error: " + res.message);
+                            return [];
+                        }
+                    }
+                },
+                "aoColumns": [
+                    { 'mData': 'Nom', 'sType': 'string', "bVisible": true },
+                    { 'mData': 'Prenom', 'sType': 'string', "bVisible": true },
+                    { 'mData': 'Ville', 'sType': 'double', "bVisible": true },
+                    { 'mData': 'Longitude', 'sType': 'string', "bVisible": true },
+                    { 'mData': 'Laltitude', 'sType': 'string', "bVisible": true },
+                    { 'mData': 'Dispo', 'sType': 'string', "bVisible": true },
+                    {
+                        "mData": "IDLivreur", "render" : function (mData) {
+                            return '<a href = "@Url.Action("Edit")?id=' + mData + '" class= "link-info" > Edit</a> | <a href="@Url.Action("Delete")?id=' + mData + '" class="link-light">Delete</a> | <a href="@Url.Action("Details")?id='+mData+'" class="link-dark">Details</a>';
+                    }}
+                 ],
+
+
+                "order": [[1, "asc"]]
+
+            });
+
+        });
+
+
+    </script>
+}

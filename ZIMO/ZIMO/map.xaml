@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             x:Class="ZIMO.map">
+    <ContentPage.Content>
+        <!-- <StackLayout>
+            <Label Text="map"/>
+           <maps:Map x:Name="Mymap" IsShowingUser="False" MapClicked="Map_MapClicked"/>
+            
+        </StackLayout>-->
+
+        <RelativeLayout>
+
+            <maps:Map MapType="Street" x:Name="Mymap" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,  
+                    Property=Width,Factor=1}" RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,  
+                    Property=Height,Factor=1}" MapClicked="Map_MapClicked"/>
+
+           
+        </RelativeLayout>
+    </ContentPage.Content>
+</ContentPage>

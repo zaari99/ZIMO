@@ -1,0 +1,49 @@
+﻿@model controle.PRODUIT_COMMANDE
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>PRODUIT_COMMANDE</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Qte)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Qte)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.COMMANDE.Ville)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.COMMANDE.Ville)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUIT.Nom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PRODUIT.Nom)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

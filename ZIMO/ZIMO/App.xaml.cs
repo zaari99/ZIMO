@@ -14,7 +14,8 @@ namespace ZIMO
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+             // MainPage = new map();
+              MainPage = new AppShell();
         }
 
         protected override void OnStart()

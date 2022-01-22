@@ -36,5 +36,50 @@ namespace ZIMO.Views
         //    string token = await fbLogin.DoRegisterWithEP(mail, pass);
         //    await DisplayAlert("toi", token, "OK");
         //}
+
+        //public async void LoginMethod()
+        //{
+        //    if (string.IsNullOrEmpty("ibijb"))
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert(
+        //            "Error",
+        //            "You must enter an email.",
+        //            "Accept");
+        //        return;
+        //    }
+        //    if (string.IsNullOrEmpty("iguuyb"))
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert(
+        //            "Error",
+        //            "You must enter a password.",
+        //            "Accept");
+        //        return;
+        //    }
+
+        //    string WebAPIkey = "AIzaSyDewQerdzU0rAZIcpETYdr-jOAeeHc2RUE";
+
+
+        //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig(WebAPIkey));
+        //    try
+        //    {
+        //        var auth = await authProvider.SignInWithEmailAndPasswordAsync(EmailTxt.ToString(), PasswordTxt.ToString());
+        //        var content = await auth.GetFreshAuthAsync();
+        //        var serializedcontnet = JsonConvert.SerializeObject(content);
+
+        //        Preferences.Set("MyFirebaseRefreshToken", serializedcontnet);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await App.Current.MainPage.DisplayAlert("Alert", "Invalid useremail or password", "OK");
+        //    }
+
+        //    await Task.Delay(20);
+
+
+          
+        //}
+
+
+
     }
 }

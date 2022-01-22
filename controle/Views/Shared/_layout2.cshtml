@@ -1,0 +1,54 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+     <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body style="height:1500px">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand">CONTROLE</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li> @Html.ActionLink("Produits", "index", "ADMINPRODUITS", new { area = "" }, new { @class = "navbar-brand" })</a></li>
+               <li>@Html.ActionLink("Categories", "index", "ADMINCATEGORIEs")</li>
+                <li>@Html.ActionLink("Fourniseurs", "index", "ADMINFOURNISSEURs")</li>
+                <li>@Html.ActionLink("Clients", "index", "ADMINCLIENTs")</li>
+                <li>@Html.ActionLink("Livreurs", "index", "ADMINLIVREURs")</li>
+                <li>@Html.ActionLink("Commandes", "index", "ADMINCOMMANDEs")</li>
+                <li>@Html.ActionLink("Quantites", "index", "ADMINPRODUIT_COMMANDE")</li>
+                <li>@Html.ActionLink("Couleurs", "index", "ADMINCOULEURs")</li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a #'><span class="glyphicon glyphicon-log-in"></span> Go Out</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year -ZIMO</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

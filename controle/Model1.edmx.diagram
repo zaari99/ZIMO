@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e37e18efdcb24c058111ebc4dc3d18b4" Name="Diagram1" ZoomLevel="49">
+        <EntityTypeShape EntityType="FORMATIONModel.CATEGORIE" Width="1.5" PointX="0.875" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="FORMATIONModel.CLIENT" Width="1.5" PointX="12.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FORMATIONModel.COMMANDE" Width="1.5" PointX="9.125" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FORMATIONModel.COULEUR" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FORMATIONModel.FOURNISSEUR" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FORMATIONModel.Livreur" Width="1.5" PointX="12.375" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FORMATIONModel.PRODUIT" Width="1.5" PointX="3.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FORMATIONModel.PRODUIT_COMMANDE" Width="1.5" PointX="6.5" PointY="3" IsExpanded="true" />
+        <AssociationConnector Association="FORMATIONModel.FK_PRODUIT_CATEGORIE" ManuallyRouted="false" />
+        <AssociationConnector Association="FORMATIONModel.FK_COMMANDE_CLIENT" ManuallyRouted="false" />
+        <AssociationConnector Association="FORMATIONModel.FK_COMMANDE_Livreur" ManuallyRouted="false" />
+        <AssociationConnector Association="FORMATIONModel.FK_PRODUIT_COMMANDE_COMMANDE" ManuallyRouted="false" />
+        <AssociationConnector Association="FORMATIONModel.FK_PRODUIT_FOURNISSEUR" ManuallyRouted="false" />
+        <AssociationConnector Association="FORMATIONModel.FK_PRODUIT_COMMANDE_PRODUIT" ManuallyRouted="false" />
+        <AssociationConnector Association="FORMATIONModel.PRODUIT_COULEUR" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -14,6 +14,7 @@ using Firebase.Auth;
 using Firebase;
 using Xamarin.Forms;
 using ZIMO.Droid.Interfaces;
+using Android.Gms.Extensions;
 
 [assembly:Dependency(typeof(AndroAuth))]
 namespace ZIMO.Droid.Interfaces
@@ -27,7 +28,10 @@ namespace ZIMO.Droid.Interfaces
             try
             {
                 var user = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
-                var token = await user.User.GetIdTokenAsync(false);
+                var uid = user.User.Uid;
+                var token = await ( user.User.GetIdToken(false).AsAsync<GetTokenResult>());
+               
+
                 return token.Token;
 
             }
@@ -48,8 +52,10 @@ namespace ZIMO.Droid.Interfaces
             try
             {
                 var user = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(E, P);
-                var token = await user.User.GetIdTokenAsync(false);
-                return token.Token;
+                //  var token = await user.User.GetIdTokenAsync(false);
+                //return token.Token;
+                var token = user.User.GetIdToken(false);
+                return token.ToString();
 
             }
             catch (FirebaseAuthInvalidUserException notFound)

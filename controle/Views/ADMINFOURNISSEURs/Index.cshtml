@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewBag.Title = "PRODUITS";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+<h2>FOURNISSEURS</h2>
+
+<h3>
+    @Html.ActionLink("Create New", "Create")
+</h3>
+<hr />
+<table class="table" style="width:100%" id="MyTableResults">
+    <thead>
+        <tr>
+            <td>Nom</td>
+            <td>Adresse</td>
+
+            <td>ID</td>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+
+</table>
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+@section scripts{
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $('#MyTableResults').DataTable({
+
+                "language": {
+                    "lengthMenu": "Afficher _MENU_ lignes par page",
+                    "zeroRecords": "Aucun élément",
+                    "info": "Page _PAGE_/_PAGES_",
+                    "infoEmpty": "Aucun élément",
+                    "infoFiltered": "(filtered from _MAX_ total records)",
+                    "paginate": {
+                        "previous": "Précédent",
+                        "next": 'Suivant'
+                    }
+                },
+                "orderCellsTop": true,
+                "fixedHeader": true,
+                "bFilter": true,
+                "ajax": {
+                    dataType: "JSON",
+                    type: "GET",
+                    url: '@Url.Action("GetFournisseurs")',
+                    "dataSrc": function (res) {
+                        if (res.success == true) {
+                            return res.data;
+                        }
+                        else {
+                            alert("Error: " + res.message);
+                            return [];
+                        }
+                    }
+                },
+                "aoColumns": [
+                    { 'mData': 'Nom', 'sType': 'string', "bVisible": true },
+                    { 'mData': 'Adresse', 'sType': 'string', "bVisible": true },
+
+                    {
+                        "mData": "FournisseurId", "render" : function (mData) {
+                            return '<a href = "@Url.Action("Edit")?id='+mData+'" class= "link-info" > Edit</a> | <a href="@Url.Action("Delete")?id='+mData+'" class="link-light">Delete</a> | <a href="@Url.Action("Details")?id='+mData+'" class="link-dark">Details</a>';
+                    }}
+                 ],
+
+
+                "order": [[1, "asc"]]
+
+            });
+
+        });
+
+
+    </script>
+}

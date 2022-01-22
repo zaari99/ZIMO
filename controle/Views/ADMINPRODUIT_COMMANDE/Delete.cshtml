@@ -1,0 +1,56 @@
+﻿@model controle.PRODUIT_COMMANDE
+
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>PRODUIT_COMMANDE</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Qte)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Qte)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.COMMANDE.Ville)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.COMMANDE.Ville)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PRODUIT.Nom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PRODUIT.Nom)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
