@@ -14,7 +14,7 @@ namespace ZIMOAPI.Controllers
 {
     public class CLIENTsController : ApiController
     {
-        private FORMATIONEntities db = new FORMATIONEntities();
+        private FORMATIONEntities3 db = new FORMATIONEntities3();
 
         // GET: api/CLIENTs
         public IQueryable<CLIENT> GetCLIENTs()

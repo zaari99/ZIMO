@@ -403,7 +403,7 @@
           <End Role="COULEUR" Type="Self.COULEUR" Multiplicity="*" />
           <End Role="PRODUIT" Type="Self.PRODUIT" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="FORMATIONEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FORMATIONEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CATEGORIEs" EntityType="Self.CATEGORIE" />
           <EntitySet Name="CLIENTs" EntityType="Self.CLIENT" />
           <EntitySet Name="COMMANDEs" EntityType="Self.COMMANDE" />
@@ -446,7 +446,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FORMATIONModelStoreContainer" CdmEntityContainer="FORMATIONEntities">
+        <EntityContainerMapping StorageEntityContainer="FORMATIONModelStoreContainer" CdmEntityContainer="FORMATIONEntities1">
           <EntitySetMapping Name="CATEGORIEs">
             <EntityTypeMapping TypeName="FORMATIONModel.CATEGORIE">
               <MappingFragment StoreEntitySet="CATEGORIE">

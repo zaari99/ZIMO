@@ -13,10 +13,10 @@ namespace ZIMOAPI
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FORMATIONEntities : DbContext
+    public partial class FORMATIONEntities3 : DbContext
     {
-        public FORMATIONEntities()
-            : base("name=FORMATIONEntities")
+        public FORMATIONEntities3()
+            : base("name=FORMATIONEntities3")
         {
         }
     

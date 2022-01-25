@@ -12,7 +12,7 @@ namespace controle.Controllers
 {
     public class ADMINPRODUIT_COMMANDEController : Controller
     {
-        private FORMATIONEntities db = new FORMATIONEntities();
+        private FORMATIONEntities1 db = new FORMATIONEntities1();
 
         // GET: ADMINPRODUIT_COMMANDE
         public ActionResult Index()

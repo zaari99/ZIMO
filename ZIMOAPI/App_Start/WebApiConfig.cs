@@ -16,8 +16,9 @@ namespace ZIMOAPI
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{action}/{par}",
+                 defaults: new { controller = "ZIMO", action = "Getproduits", par = RouteParameter.Optional }/*,
+                defaults: new { id = RouteParameter.Optional }*/
             );
         }
     }

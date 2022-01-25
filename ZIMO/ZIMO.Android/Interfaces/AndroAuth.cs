@@ -54,8 +54,8 @@ namespace ZIMO.Droid.Interfaces
                 var user = await FirebaseAuth.Instance.CreateUserWithEmailAndPasswordAsync(E, P);
                 //  var token = await user.User.GetIdTokenAsync(false);
                 //return token.Token;
-                var token = user.User.GetIdToken(false);
-                return token.ToString();
+                var token = await (user.User.GetIdToken(false).AsAsync<GetTokenResult>());
+                return token.Token;
 
             }
             catch (FirebaseAuthInvalidUserException notFound)

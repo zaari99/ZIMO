@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ZIMO.Views.ListProduits">
+    <ContentPage.Content>
+       
+            <StackLayout>
+                <ListView x:Name="MylistView" >
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" ></ColumnDefinition>
+                                    <ColumnDefinition Width="2*" ></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" Grid.Column="0" Source="{Binding libelle }"></Image>
+                                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Vertical">
+                                    <Label Text="{Binding Nom }"></Label>
+                                <Label Text="{Binding Prix }"></Label>
+                                <Label Text="{Binding NomFournisseur }"></Label>
+                                </StackLayout>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

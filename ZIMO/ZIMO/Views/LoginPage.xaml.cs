@@ -24,10 +24,31 @@ namespace ZIMO.Views
         {
             string mail = txtMAil.Text;
             string pass = txtPass.Text;
+            if (string.IsNullOrEmpty(mail))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter an email.",
+                    "Accept");
+                return;
+            }
+            if (string.IsNullOrEmpty(pass))
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "You must enter a password.",
+                    "Accept");
+                return;
+            }
+            else {
+                var fbLogin = DependencyService.Get<IFirebaseZIMO>();
+                string token = await fbLogin.LoginWithEmailPassword(mail, pass);
+                await DisplayAlert("message", token, "OK");
+                //HttpClient.
+                //var _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+            }
 
-            var fbLogin = DependencyService.Get<IFirebaseZIMO>();
-            string token = await fbLogin.LoginWithEmailPassword(mail, pass);
-            await DisplayAlert("toi", token, "OK");
+           
            
             //using (var httpClient = new HttpClient { DefaultRequestHeaders = { Authorization = AuthenticationHeaderValue(token) } })
             //{

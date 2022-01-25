@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace ZIMOAPI.Models
+namespace ZIMO.Models
 {
     public class Produit
     {
@@ -12,8 +12,5 @@ namespace ZIMOAPI.Models
         public double? Prix { get; set; }
         public string libelle { get; set; }
         public string NomFournisseur { get; set; }
-        
-
-        
     }
 }

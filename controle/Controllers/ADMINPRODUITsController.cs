@@ -13,7 +13,7 @@ namespace controle.Controllers
 {
     public class ADMINPRODUITsController : Controller
     {
-        private FORMATIONEntities db = new FORMATIONEntities();
+        private FORMATIONEntities1 db = new FORMATIONEntities1();
 
         // GET: ADMINPRODUITs
         public ActionResult Index()
