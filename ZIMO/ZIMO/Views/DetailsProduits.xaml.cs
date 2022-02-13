@@ -23,13 +23,7 @@ namespace ZIMO
         {   
             InitializeComponent();
             id = ID;
-           
-
         }
-      
-
-
-
         protected async override void OnAppearing() //
         {
             base.OnAppearing();
@@ -38,12 +32,16 @@ namespace ZIMO
             {
                 HttpClient c;
                 c = new HttpClient();
-                String url = $"http://192.168.8.109/APIZIMO/api/zimo/GetDetailsProduit?id={id}";
+                String url = $"http://192.168.1.15/APIZIMO/api/zimo/GetDetailsProduit?id={id}";
                 
                 s = await c.GetStringAsync(url);
+
                 DetailsProduit res;
+
                 res  = JsonConvert.DeserializeObject<DetailsProduit>(s);
+
                // await  DisplayAlert("WebException",res.BindingContext.ToString(), "OK");
+
                 this.BindingContext = res;
             }
             catch (System.Net.Http.HttpRequestException e)
@@ -57,14 +55,15 @@ namespace ZIMO
         {
             totalPrix.Text =(Convert.ToInt32(stepper.Value)* Convert.ToDouble(Prix.Text)).ToString();
         }
-
         private async void AddProduit(Object sender, EventArgs e)
         {
          
             App.dt.Rows.Add("idproduit", id);
+
             App.dt.Rows.Add("qte", stepper.Value);
 
             Navigation.PushModalAsync(new NavigationPage(new ListProduits()));
+
         }
         private async void Back(Object sender, EventArgs e)
         {
