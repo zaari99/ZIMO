@@ -20,7 +20,7 @@ namespace ZIMO.Views.Masterpage
         public FlyoutPage1Flyout()
         {
             InitializeComponent();
-
+            BtnRegister_ClickedFunc();
             BindingContext = new FlyoutPage1FlyoutViewModel();
             ListView = MenuItemsListView;
         }
@@ -33,11 +33,11 @@ namespace ZIMO.Views.Masterpage
             {
                 MenuItems = new ObservableCollection<FlyoutPage1FlyoutMenuItem>(new[]
                 {
-                    new FlyoutPage1FlyoutMenuItem { Id = 0, Title = "Login Page",TargetType=typeof(LoginPage) },
-                    new FlyoutPage1FlyoutMenuItem { Id = 1, Title = "Register ",TargetType=typeof(Register) },
-                    new FlyoutPage1FlyoutMenuItem { Id = 2, Title = "Page 3" },
-                    new FlyoutPage1FlyoutMenuItem { Id = 3, Title = "Page 4" },
-                    new FlyoutPage1FlyoutMenuItem { Id = 4, Title = "Page 5" },
+                 //  new FlyoutPage1FlyoutMenuItem { Id = 0, Title = "Login Page",TargetType=typeof(LoginPage) },
+                    new FlyoutPage1FlyoutMenuItem { Id = 1, Title = "Produits ",TargetType=typeof(ListProduits) },
+                    new FlyoutPage1FlyoutMenuItem { Id = 2, Title = "Paiement",TargetType=typeof(Paiement) },
+                    //new FlyoutPage1FlyoutMenuItem { Id = 3, Title = "Page 4" },
+                    //new FlyoutPage1FlyoutMenuItem { Id = 4, Title = "Page 5" },
                 });
             }
 
@@ -51,6 +51,21 @@ namespace ZIMO.Views.Masterpage
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             #endregion
+        }
+
+        private async void BtnRegister_ClickedFunc()
+        {
+            BtnRegister_Clicked.GestureRecognizers.Add(new TapGestureRecognizer()
+            {
+                Command = new Command(() => {
+                    
+                      //Navigation.PushAsync(new LoginPage());
+                       Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
+                   //  new NavigationPage(new LoginPage());
+                    //     Navigation.PushAsync(new LoginPage());
+                })
+            });
+
         }
     }
 }

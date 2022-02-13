@@ -16,5 +16,6 @@ namespace ZIMO.Views.Masterpage
         public string Title { get; set; }
 
         public Type TargetType { get; set; }
+        public int? parms { get; set; }
     }
 }

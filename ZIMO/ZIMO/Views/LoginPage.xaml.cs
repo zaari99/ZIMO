@@ -1,14 +1,18 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using ZIMO.Models;
 using ZIMO.Services;
-using ZIMO.ViewModels;
+using ZIMO.Views.Masterpage;
+using ZIMOAPI.Models;
 
 namespace ZIMO.Views
 {
@@ -18,7 +22,9 @@ namespace ZIMO.Views
         public LoginPage()
         {
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+            BtnRegister_ClickedFunc();
+
+
         }
         private async void BtnLogin_Clicked(Object sender, EventArgs e)
         {
@@ -42,35 +48,55 @@ namespace ZIMO.Views
             }
             else {
                 var fbLogin = DependencyService.Get<IFirebaseZIMO>();
-                string token = await fbLogin.LoginWithEmailPassword(mail, pass);
-                await DisplayAlert("message", token, "OK");
-                //HttpClient.
-                //var _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", token);
+                //string token = await fbLogin.LoginWithEmailPassword(mail, pass);
+                string[] res = await fbLogin.LoginWithEmailPassword(mail, pass);
+                if (res[0] == "token") {
+                  
+                    FlyoutPage1FlyoutMenuItem item = new FlyoutPage1FlyoutMenuItem
+                    {
+                        Id = 2,
+                        Title = "ListProduits",
+                        TargetType = typeof(ListProduits)
+                    };
+
+                    HttpClient c;
+                    c = new HttpClient();
+                    String url = $"http://192.168.8.109/APIZIMO/api/zimo/GetInfoClient?Mail={mail}";
+                    String s = await c.GetStringAsync(url);
+                    var client = JsonConvert.DeserializeObject<InfoClient>(s);
+                    App.client = client;
+
+                    await this.DisplayToastAsync("This is a Toast Message");
+                    await Navigation.PushModalAsync(new  FlyoutPage1(item));
+
+                } else if(res[0]=="NotFound") {
+                    await DisplayAlert("NotFound", res[1], "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Error", res[1], "OK");
+                }
+               
+             
             }
-
            
-           
-            //using (var httpClient = new HttpClient { DefaultRequestHeaders = { Authorization = AuthenticationHeaderValue(token) } })
-            //{
-            //    var res = await httpClient.GetAsync("http://localhost:5001/api/data&#8221");
-            //    var content = await res.Content.ReadAsStringAsync();
-            //}
 
-        }
 
-        private AuthenticationHeaderValue AuthenticationHeaderValue(string token)
+
+               
+
+            }
+        private async void BtnRegister_ClickedFunc()
         {
-            throw new NotImplementedException();
+            BtnRegister_Clicked.GestureRecognizers.Add (new TapGestureRecognizer()
+            {
+                Command = new Command(() => {
+                    Navigation.PushModalAsync(new NavigationPage(new Register()));
+                })
+            });
+           
         }
-        //private async void BtnEnresiter_Clicked(Object sender ,EventArgs e)
-        //{
-        //    string mail = txtMAil.Text;
-        //    string pass = txtPass.Text;
-
-        //    var fbLogin = DependencyService.Get<IFirebaseZIMO>();
-        //    string token = await fbLogin.DoRegisterWithEP(mail, pass);
-        //    await DisplayAlert("toi", token, "OK");
-        //}
+       
 
 
     }

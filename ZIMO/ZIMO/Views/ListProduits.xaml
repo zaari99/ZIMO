@@ -3,28 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZIMO.Views.ListProduits">
     <ContentPage.Content>
-       
-            <StackLayout>
-                <ListView x:Name="MylistView" >
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
+        <StackLayout  Padding="10" >
+            <ListView x:Name="MyListView" HasUnevenRows="True" ItemSelected="MyListView_ItemSelected" >
+                <!--ItemsSource="{Binding produits}"-->
+
+                <ListView.ItemTemplate >
+                    <DataTemplate >
+                        <ViewCell IsEnabled="True" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                                     <ColumnDefinition Width="2*" ></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                            <Image Grid.Row="0" Grid.Column="0" Source="{Binding libelle }"></Image>
-                                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Vertical">
-                                    <Label Text="{Binding Nom }"></Label>
-                                <Label Text="{Binding Prix }"></Label>
-                                <Label Text="{Binding NomFournisseur }"></Label>
+                                <StackLayout Grid.Row="0" Grid.Column="0" Margin="20,0,8,0" Orientation="Vertical" VerticalOptions="Center" BackgroundColor="Azure" Padding="5,0,0,5" >
+                                    <Image Background="black"  Source="xamarin_logo.png" ></Image>
+                                   
+                                   
                                 </StackLayout>
+                            <!--x:Uid="{Binding ProduitID }"-->
+                                <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Vertical"  VerticalOptions="Center" Spacing="13">
+                                            <Label Text="{Binding Nom }"></Label>
+                                            <Label Text="{Binding libelle }"></Label>
+                                             <Label Text="{Binding PrixChar }"></Label>
+                                            
+                                           
+
+                                        </StackLayout>
                             </Grid>
-                        </DataTemplate>
+                        </ViewCell>
+                    </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </StackLayout>
+            <Button Clicked="Allez" Text="ALLEZ"></Button>
+        </StackLayout>
         
     </ContentPage.Content>
 </ContentPage>

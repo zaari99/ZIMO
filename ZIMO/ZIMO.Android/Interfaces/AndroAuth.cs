@@ -23,31 +23,36 @@ namespace ZIMO.Droid.Interfaces
     {
         
 
-        public async Task<string> LoginWithEmailPassword(string email, string password)
+        public async Task<string[]> LoginWithEmailPassword(string email, string password)
         {
             try
             {
                 var user = await FirebaseAuth.Instance.SignInWithEmailAndPasswordAsync(email, password);
                 var uid = user.User.Uid;
                 var token = await ( user.User.GetIdToken(false).AsAsync<GetTokenResult>());
-               
 
-                return token.Token;
+                string[] res = { "token", token.Token };
+                return res;
 
             }
             catch (FirebaseAuthInvalidUserException notFound)
             {
-                return notFound.Message;
+               
+                string[] res = { "notFound", notFound.Message };
+                return res;
+               
 
             }
             catch (System.Exception err)
             {
-                return err.Message;
+                string[] res = { "Exception", err.Message };
+                return res;
+              //  return new FirebaseAUTH { message = err.Message, status = false };
 
             } 
         }
 
-        public async Task<string> DoRegisterWithEP(string E, string P)
+        public async Task<string[]> DoRegisterWithEP(string E, string P)
         {
             try
             {
@@ -55,20 +60,34 @@ namespace ZIMO.Droid.Interfaces
                 //  var token = await user.User.GetIdTokenAsync(false);
                 //return token.Token;
                 var token = await (user.User.GetIdToken(false).AsAsync<GetTokenResult>());
-                return token.Token;
+
+                string[] res = { "token", token.Token };
+                return res;
 
             }
             catch (FirebaseAuthInvalidUserException notFound)
             {
-                return notFound.Message;
+
+                string[] res = { "notFound", notFound.Message };
+                return res;
+
 
             }
             catch (System.Exception err)
             {
-                return err.Message;
+                string[] res = { "Exception", err.Message };
+                return res;
+                //  return new FirebaseAUTH { message = err.Message, status = false };
 
             }
 
         }
+    }
+
+    public class FirebaseAUTH
+    {
+        public string message { get; set; }
+        public string tocken { get; set; }
+        public bool status { get; set; }
     }
 }

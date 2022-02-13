@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ZIMO.Views.Masterpage.FlyoutPage1Flyout"
-             Title="Flyout">
+             Title="Flyout" NavigationPage.HasNavigationBar="false">
   <StackLayout>
     <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="None"
@@ -41,5 +41,11 @@
         </DataTemplate>
       </ListView.ItemTemplate>
     </ListView>
-  </StackLayout>
+        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+            <Label VerticalOptions="FillAndExpand" 
+                    VerticalTextAlignment="Center" 
+                    Text="LogOut" x:Name="BtnRegister_Clicked"
+                    FontSize="24"/>
+        </StackLayout>
+    </StackLayout>
 </ContentPage>

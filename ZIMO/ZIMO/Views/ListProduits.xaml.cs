@@ -6,33 +6,76 @@ using System.Threading.Tasks;
 using ZIMO.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using System.Net.Http;
+//using System.Net.Http;
+
 using Newtonsoft.Json;
 using ZIMO.Models;
+using System.Net;
+using System.IO;
+using System.Collections.ObjectModel;
+using System.Net.Http;
+using ZIMO.Views.Masterpage;
+using System.Data;
 
 namespace ZIMO.Views
 {
+
+    
+        
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
+
+
     public partial class ListProduits : ContentPage
     {
-        HttpClient client;
+         
+         protected List<Produit> res;
+
+        // HttpClient client;
         public ListProduits()
         {
             InitializeComponent();
+           
         }
-        protected async override void OnAppearing() //
-        {
-            base.OnAppearing();
-            client = new HttpClient();
-             Uri uri = new Uri("http://");
-             HttpResponseMessage response = await client.GetAsync(uri);
-            if (response.IsSuccessStatusCode)
-            {
-                var content = await response.Content.ReadAsStringAsync();
-                List<Produit>  Items = JsonConvert.DeserializeObject<List<Produit>>(content);
-                this.BindingContext = Items;
-            }
 
+       
+
+        protected async  override void OnAppearing() //
+        {
+            
+
+            base.OnAppearing();
+            try
+            {
+                HttpClient c;
+                c = new HttpClient();
+                String url = $"http://192.168.8.109/APIZIMO/api/zimo/getproduits";
+                String s;
+                s = await c.GetStringAsync(url);
+               
+                res = JsonConvert.DeserializeObject<List<Produit>>(s);
+               
+                MyListView.ItemsSource = res;
+            } catch (System.Net.Http.HttpRequestException e) {
+                await DisplayAlert("WebException", e.Message, "OK"); 
+            }
+        }
+        private async void MyListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+             await Navigation.PushAsync(new DetailsProduits(res[e.SelectedItemIndex].ProduitID));
+            
+        }
+
+        private async void Allez(object sender, EventArgs e)
+        {
+
+            FlyoutPage1FlyoutMenuItem item = new FlyoutPage1FlyoutMenuItem
+            {
+                Id = 2,
+                Title = "Map",
+                TargetType = typeof(map)
+            };
+            await Navigation.PushModalAsync(new FlyoutPage1(item));
         }
     }
 }
