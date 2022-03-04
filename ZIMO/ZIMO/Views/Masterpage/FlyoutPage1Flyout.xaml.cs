@@ -23,6 +23,7 @@ namespace ZIMO.Views.Masterpage
             BtnRegister_ClickedFunc();
             BindingContext = new FlyoutPage1FlyoutViewModel();
             ListView = MenuItemsListView;
+            name.Text = $"{App.client.Nom} {App.client.Prenom}"; 
         }
 
         class FlyoutPage1FlyoutViewModel : INotifyPropertyChanged

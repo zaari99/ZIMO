@@ -49,7 +49,7 @@ namespace ZIMO.Views
             {
                 HttpClient c;
                 c = new HttpClient();
-                String url = $"http://192.168.8.109/APIZIMO/api/zimo/getproduits";
+                String url = $"http://192.168.8.102/APIZIMO/api/zimo/getproduits";
                 String s;
                 s = await c.GetStringAsync(url);
                

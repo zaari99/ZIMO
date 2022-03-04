@@ -8,8 +8,8 @@
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
         <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Entry x:Name="txtMAil" Placeholder="MAIL"/>
-            <Entry x:Name="txtPass" Placeholder="PASS"/>
+            <Entry x:Name="txtMAil"  Placeholder="MAIL"/>
+            <Entry x:Name="txtPass" IsPassword="True" Placeholder="PASS"/>
             <Button VerticalOptions="Center" Text="Login" Clicked="BtnLogin_Clicked" />
             <Label HorizontalOptions="CenterAndExpand"   FontSize="Medium" Text="s'inscrire"   TextColor="Blue" x:Name="BtnRegister_Clicked" >
          

@@ -3,7 +3,9 @@ using System;
 using System.Data;
 using System.Net.Http;
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
+using ZIMO.Models;
 using ZIMO.Services;
 using ZIMO.Views;
 using ZIMO.Views.Masterpage;
@@ -14,6 +16,10 @@ namespace ZIMO
     public partial class App : Application
     {
         public static  DataTable dt = new DataTable("Produits");
+        public static Position Pos=new Position();
+        public static string adresse = null;
+
+        //public static Paniers Paniers = new Paniers();
         public static InfoClient client = new InfoClient();
 
         public App()
@@ -30,13 +36,16 @@ namespace ZIMO
 
         protected  override void OnStart()
         {
+
+
             dt.Columns.Add("qte");
-           // dt.Get["qte"].Unique = true;
-
-
-
             dt.Columns.Add("idproduit");
-           
+            
+            dt.Columns.Add("Nomproduit");
+            dt.Columns.Add("prix");
+            
+
+
         }
        
 

@@ -7,6 +7,7 @@ using Xamarin.Forms.Maps;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using ZIMO.Views.Masterpage;
 //using Plugin.Permissions;
 //using Plugin.Permissions.Abstractions;
 
@@ -21,23 +22,7 @@ namespace ZIMO
         {
             InitializeComponent();
         }
-        /////////////////
-        //private async void CheckLocationPermission()
-        //{
-
-        //    PermissionStatus status = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Location);
-        //    if (status != PermissionStatus.Granted)
-        //    {
-        //        Device.BeginInvokeOnMainThread(async () =>
-        //        {
-        //            if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Location))
-        //            {
-        //                //await DisplayAlert("Need location Permission", "Location permission not available", "OK");
-        //            }
-        //        });
-        ////////////////
-
-        /// ////////////////
+        
 
 
 
@@ -49,38 +34,96 @@ namespace ZIMO
         {
             await DisplayAlert("Coordonnes", $"lat:{e.Position.Latitude},long:{e.Position.Longitude}", "OK");
             var addresse = await geo.GetAddressesForPositionAsync(e.Position);
-            await DisplayAlert("Adresse", addresse.FirstOrDefault()?.ToString(), "OK");
-            
-            
-
+            Mymap.MoveToRegion(MapSpan.FromCenterAndRadius(e.Position, Distance.FromKilometers(0.3)));
             var pin = new Pin
             {
-                Label = "Santa Cruz",
+                Label = "Emplacement",
                 Address = addresse.FirstOrDefault()?.ToString(),
                 Type = PinType.Place,
                 Position = e.Position
             };
             Mymap.Pins.Add(pin);
-            var pol= new Polyline {
-                StrokeColor = Color.Blue,
-                StrokeWidth = 12,
-                Geopath = {
 
-                    e.Position,
-                    new Position(47.6381473, -122.1350841)} 
+             await Task.Delay(5000);
+
+            var result =  await DisplayAlert("Adresse", addresse.FirstOrDefault()?.ToString(), "OK", "No");
+            
+            if (result)
+            {
+                App.adresse = addresse.FirstOrDefault()?.ToString();
+                await Task.Delay(2000);
+            }
+            else
+            {
+                Mymap.Pins.Clear();
+            }
+            FlyoutPage1FlyoutMenuItem item = new FlyoutPage1FlyoutMenuItem
+            {
+                Id = 2,
+                Title = "ListProduits",
+                TargetType = typeof(Paiement)
             };
-            Mymap.MapElements.Add(pol);
-        }
+            await Navigation.PushModalAsync(new FlyoutPage1(item));
 
-            //    var position = await geo.GetPositionsForAddressAsync("Maroc , casablanca ,fsac");
-            //    await DisplayAlert("Position", $"{position.First().Latitude} ///{position.First().Longitude}", "OK");
-            //    Mymap.MoveToRegion(MapSpan.FromCenterAndRadius(position.First(), Distance.FromKilometers(1)));
-
-            //}
 
 
 
 
 
         }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            var location = await Geolocation.GetLocationAsync();
+            var position = new Position(location.Latitude, location.Longitude);
+            
+            var addresse = await geo.GetAddressesForPositionAsync(position);
+            
+
+            Mymap.MoveToRegion(MapSpan.FromCenterAndRadius(position, Distance.FromKilometers(0.3)));
+
+            var pin = new Pin
+            {
+                Label = "Emplacement",
+                Address = addresse.FirstOrDefault()?.ToString(),
+                Type = PinType.Place,
+                Position = position
+            };
+            Mymap.Pins.Add(pin);
+             await Task.Delay(5000);
+
+            var result = await DisplayAlert("Adresse", addresse.FirstOrDefault()?.ToString(), "OK", "No");
+
+            if (result)
+            {
+                App.adresse = addresse.FirstOrDefault()?.ToString();
+                await Task.Delay(2000);
+
+
+            }
+            else
+            {
+                Mymap.Pins.Clear();
+            }
+           
+            App.Pos = position;
+
+            FlyoutPage1FlyoutMenuItem item = new FlyoutPage1FlyoutMenuItem
+            {
+                Id = 2,
+                Title = "ListProduits",
+                TargetType = typeof(Paiement)
+            };
+            await Navigation.PushModalAsync(new FlyoutPage1(item));
+
+
+        }
+
+     
+
+
+
+
+
+    }
 }

@@ -22,9 +22,10 @@
             <RowDefinition Height="10"/>
           </Grid.RowDefinitions>
           <Label
+              x:Name="name"
               Grid.Column="1"
               Grid.Row="2"
-              Text="AppName"
+              Text=""
               Style="{DynamicResource SubtitleStyle}"/>
         </Grid>
       </ListView.Header>

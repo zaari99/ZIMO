@@ -225,6 +225,7 @@
     </Compile>
     <Compile Include="Models\Com.cs" />
     <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Commande.cs" />
     <Compile Include="Models\Commande1.cs" />
     <Compile Include="Models\InfoClient.cs" />
     <Compile Include="Models\DetailsProduit.cs" />

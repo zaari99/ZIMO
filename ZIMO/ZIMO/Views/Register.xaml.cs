@@ -25,7 +25,7 @@ namespace ZIMO.Views
       
         private async void BtnEnresiter_Clicked(Object sender, EventArgs e)
         {
-            String url = $"http://192.168.8.108/APIZIMO/api/zimo/AddClient";
+            String url = $"http://192.168.8.102/APIZIMO/api/zimo/AddClient";
             string mail = txtMAil.Text;
             string pass = txtPass0.Text;
             string pass1 = txtPass1.Text;
@@ -61,8 +61,7 @@ namespace ZIMO.Views
                         if (message.IsSuccessStatusCode)
                         {
                             var apiResponse = message.Content.ReadAsStringAsync();
-                            await this.DisplayToastAsync("This is a Toast Message");
-                            await this.DisplayToastAsync("This is a Toast Message for 5 seconds", 5000);
+                            await this.DisplayToastAsync("Bienvenue " + client.Nom + " " + client.Prenom);
 
 
                         }

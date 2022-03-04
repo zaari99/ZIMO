@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using ZIMO.Models;
 using ZIMO.Views;
 using ZIMO;
+using ZIMO.Views.Masterpage;
 
 namespace ZIMO
 {
@@ -32,7 +33,7 @@ namespace ZIMO
             {
                 HttpClient c;
                 c = new HttpClient();
-                String url = $"http://192.168.1.15/APIZIMO/api/zimo/GetDetailsProduit?id={id}";
+                String url = $"http://192.168.8.102/APIZIMO/api/zimo/GetDetailsProduit?id={id}";
                 
                 s = await c.GetStringAsync(url);
 
@@ -58,16 +59,35 @@ namespace ZIMO
         private async void AddProduit(Object sender, EventArgs e)
         {
          
-            App.dt.Rows.Add("idproduit", id);
+            //App.dt.Rows.Add("idproduit", id);
 
-            App.dt.Rows.Add("qte", stepper.Value);
+            //App.dt.Rows.Add("qte", stepper.Value);
+            //App.dt.Rows.Add("Nomproduit",nom.Text);
+            //App.dt.Rows.Add("prix",totalPrix.Text);
+            DataRow row3 = App.dt.NewRow();
 
-            Navigation.PushModalAsync(new NavigationPage(new ListProduits()));
+            row3["idproduit"] = IDProduit.Text ;
+            row3["qte"] = stepper.Value;
+            row3["Nomproduit"] = nom.Text;
+            row3["prix"] = totalPrix.Text;
+            App.dt.Rows.Add(row3);
+            vers_pageListe();
 
         }
-        private async void Back(Object sender, EventArgs e)
+        //private async void Back(Object sender, EventArgs e)
+        //{
+        //    vers_pageListe();
+        //}
+
+        private async void vers_pageListe()
         {
-            Navigation.PushModalAsync( new ListProduits());
+            FlyoutPage1FlyoutMenuItem item = new FlyoutPage1FlyoutMenuItem
+            {
+                Id = 2,
+                Title = "ListProduits",
+                TargetType = typeof(ListProduits)
+            };
+            await Navigation.PushModalAsync(new FlyoutPage1(item));
         }
     }
 }

@@ -61,12 +61,12 @@ namespace ZIMO.Views
 
                     HttpClient c;
                     c = new HttpClient();
-                    String url = $"http://192.168.8.109/APIZIMO/api/zimo/GetInfoClient?Mail={mail}";
+                    String url = $"http://192.168.8.102/APIZIMO/api/zimo/GetInfoClient?Mail={mail}";
                     String s = await c.GetStringAsync(url);
                     var client = JsonConvert.DeserializeObject<InfoClient>(s);
                     App.client = client;
 
-                    await this.DisplayToastAsync("This is a Toast Message");
+                    await this.DisplayToastAsync("Bienvenue "+client.Nom +" "+ client.Prenom );
                     await Navigation.PushModalAsync(new  FlyoutPage1(item));
 
                 } else if(res[0]=="NotFound") {
@@ -91,7 +91,7 @@ namespace ZIMO.Views
             BtnRegister_Clicked.GestureRecognizers.Add (new TapGestureRecognizer()
             {
                 Command = new Command(() => {
-                    Navigation.PushModalAsync(new NavigationPage(new Register()));
+                    Navigation.PushAsync(new NavigationPage(new Register()));
                 })
             });
            

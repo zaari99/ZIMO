@@ -13,8 +13,9 @@
                 
 
                 <StackLayout  HorizontalOptions="Center" Grid.Row="0" Orientation="Horizontal">
-                    <Image Source="telephone3.jpg" ></Image>
-                    <Image Source="telephone3.jpg" ></Image>
+                    <Image  Source="{Binding ProduitID, StringFormat='image_{0}.png'} " ></Image>
+                    <Image Source="{Binding ProduitID, StringFormat='image_{0}.png'} " ></Image>
+                    <Label x:Name="IDProduit" IsVisible="false" Text="{Binding ProduitID}"></Label>
                 </StackLayout>
 
                 <ScrollView  Grid.Row="1"  HorizontalOptions="Center" >
@@ -36,7 +37,7 @@
                             </Grid.ColumnDefinitions>
                            
                             <Label Text="Nom :" Grid.Column="0" Grid.Row="0" FontSize="Medium" ></Label>
-                            <Label Text="{Binding Nom} " FontSize="Medium" Grid.Column="1" Grid.Row="0"></Label>
+                            <Label  x:Name="nom"  Text="{Binding Nom} " FontSize="Medium" Grid.Column="1" Grid.Row="0"></Label>
 
                             <Label Text="Prix :"  FontSize="Medium" Grid.Column="0" Grid.Row="1"></Label>
                             <Label x:Name="Prix" Text="{Binding Prix}" FontSize="Medium" Grid.Column="1" Grid.Row="1" ></Label>
@@ -82,7 +83,7 @@
             </Grid>
 
           <Button Text="Ajouter au panier" Clicked="AddProduit"></Button>
-            <Button Text="retour " Clicked="Back"></Button>
+            <!--<Button Text="retour " Clicked="Back"></Button>-->
         </StackLayout>
 
     </ContentPage.Content>

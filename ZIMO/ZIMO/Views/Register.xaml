@@ -11,8 +11,8 @@
             <Entry x:Name="Nom" Placeholder="Nom"/>
             <Entry x:Name="Prenom" Placeholder="Prenom"/>
             <Entry x:Name="txtMAil" Placeholder="MAIL"/>
-            <Entry x:Name="txtPass0" Placeholder="PASS"/>
-            <Entry x:Name="txtPass1" Placeholder="COnfirmPASS"/>
+            <Entry x:Name="txtPass0"  IsPassword="True" Placeholder="PASS"/>
+            <Entry x:Name="txtPass1" IsPassword="True" Placeholder="COnfirmPASS"/>
             <Button VerticalOptions="Center" Text="Login" Clicked="BtnEnresiter_Clicked" />
             <Label HorizontalOptions="CenterAndExpand"   FontSize="Medium" Text="retour"   TextColor="Blue" x:Name="BtnRegister_Clicked" >
 

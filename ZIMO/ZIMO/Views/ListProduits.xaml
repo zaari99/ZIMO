@@ -16,11 +16,14 @@
                                     <ColumnDefinition Width="1*" ></ColumnDefinition>
                                     <ColumnDefinition Width="2*" ></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <StackLayout Grid.Row="0" Grid.Column="0" Margin="20,0,8,0" Orientation="Vertical" VerticalOptions="Center" BackgroundColor="Azure" Padding="5,0,0,5" >
-                                    <Image Background="black"  Source="xamarin_logo.png" ></Image>
-                                   
-                                   
-                                </StackLayout>
+
+
+
+                                <StackLayout WidthRequest="20" HeightRequest="40" Grid.Column="0" HorizontalOptions="Start" Orientation="Horizontal">
+                                        <Image Source="{Binding ProduitID, StringFormat='image_{0}.png'} " ></Image>
+                                       
+                                    </StackLayout>
+                               
                             <!--x:Uid="{Binding ProduitID }"-->
                                 <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Vertical"  VerticalOptions="Center" Spacing="13">
                                             <Label Text="{Binding Nom }"></Label>
